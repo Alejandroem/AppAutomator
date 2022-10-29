@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "aV3saUpmIqSBi8UvWTJVoWbx65n9aCZaLNORPRJeehzWQlMGPVrOoeydUi+W+vK8wD+4qJjTYy2QxKepG4zJSA==",
+  "dgSpecHash": "sQPh5T3DkXlzL29DGwRlPEp3tWyyYSM1ORyIVkCYYT37/jYOf1pWqRvAB4S9QKW1SRXGtMDCWeIFz7tSZnVcYQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\alexa\\Development\\AppAutomator\\AppAutomator\\AppAutomator.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alexa\\.nuget\\packages\\flaui.core\\3.2.0\\flaui.core.3.2.0.nupkg.sha512",
     "C:\\Users\\alexa\\.nuget\\packages\\flaui.uia3\\3.2.0\\flaui.uia3.3.2.0.nupkg.sha512",
     "C:\\Users\\alexa\\.nuget\\packages\\interop.uiautomationclient\\10.18362.0\\interop.uiautomationclient.10.18362.0.nupkg.sha512",
+    "C:\\Users\\alexa\\.nuget\\packages\\log4net\\2.0.15\\log4net.2.0.15.nupkg.sha512",
     "C:\\Users\\alexa\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\alexa\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\alexa\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",

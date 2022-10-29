@@ -11,12 +11,13 @@ namespace AppAutomator
 {
     class WireGuard
     {
-        /* TODO
+        
          const String ACTIVATE = "Activate";
         const String DEACTIVATE = "Deactivate";
-        */
+        /*
         const String ACTIVATE = "Activar";
         const String DEACTIVATE = "Desactivar";
+        */
         Application wireGuardApp;
 
         String[] networks;

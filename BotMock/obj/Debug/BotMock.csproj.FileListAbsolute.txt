@@ -1,5 +1,6 @@
 C:\Users\alexa\Development\AppAutomator\BotMock\bin\Debug\BotMock.exe
 C:\Users\alexa\Development\AppAutomator\BotMock\bin\Debug\BotMock.pdb
+C:\Users\alexa\Development\AppAutomator\BotMock\obj\Debug\BotMock.csproj.AssemblyReference.cache
 C:\Users\alexa\Development\AppAutomator\BotMock\obj\Debug\BotMock.windowBotMock.resources
 C:\Users\alexa\Development\AppAutomator\BotMock\obj\Debug\BotMock.Properties.Resources.resources
 C:\Users\alexa\Development\AppAutomator\BotMock\obj\Debug\BotMock.csproj.GenerateResource.cache

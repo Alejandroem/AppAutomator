@@ -1,4 +1,5 @@
 C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\AppAutomator.exe
+C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\AppAutomator.dll.config
 C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\AppAutomator.deps.json
 C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\AppAutomator.runtimeconfig.json
 C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\AppAutomator.runtimeconfig.dev.json
@@ -7,6 +8,7 @@ C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\App
 C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\FlaUI.Core.dll
 C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\FlaUI.UIA3.dll
 C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\Interop.UIAutomationClient.dll
+C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\log4net.dll
 C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\System.Management.dll
 C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Management.dll
 C:\Users\alexa\Development\AppAutomator\AppAutomator\obj\Debug\netcoreapp3.1\AppAutomator.GeneratedMSBuildEditorConfig.editorconfig
@@ -17,3 +19,4 @@ C:\Users\alexa\Development\AppAutomator\AppAutomator\obj\Debug\netcoreapp3.1\App
 C:\Users\alexa\Development\AppAutomator\AppAutomator\obj\Debug\netcoreapp3.1\AppAutomator.dll
 C:\Users\alexa\Development\AppAutomator\AppAutomator\obj\Debug\netcoreapp3.1\AppAutomator.pdb
 C:\Users\alexa\Development\AppAutomator\AppAutomator\obj\Debug\netcoreapp3.1\AppAutomator.genruntimeconfig.cache
+C:\Users\alexa\Development\AppAutomator\AppAutomator\obj\Debug\netcoreapp3.1\AppAutomator.csproj.AssemblyReference.cache
