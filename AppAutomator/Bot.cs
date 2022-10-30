@@ -2,27 +2,35 @@
 using FlaUI.Core.AutomationElements;
 using FlaUI.UIA3;
 using System;
+using System.Configuration;
 using System.Threading;
 
 namespace AppAutomator
 {
     class Bot
     {
-        
+        /*
         const String CONTINUE ="Continue";
         const String TRY_AGAIN = "Try again";
         const String CANCEL = "Cancel";
-        /*
+        */
         const String CONTINUE = "Omitir";
         const String TRY_AGAIN = "Reintentar";
         const String CANCEL = "Abortar";
-        */
+        
         Application botApp;
         public Bot()
         {
-            botApp = FlaUI.Core.Application.Launch("C:\\BrowserBot\\Refinance\\BrowserBot.Console.exe");
-            //botApp = FlaUI.Core.Application.Launch("C:\\Users\\alexa\\Development\\AppAutomator\\BotMock\\bin\\Debug\\BotMock.exe");            
+            String botPath = ConfigurationManager.AppSettings["botPath"];
+            botApp = FlaUI.Core.Application.Launch(botPath);
 
+        }
+
+        public void doAFullRunAndWaitToTryAgain()
+        {
+            waitUntilVisibleAgain();
+            clickContinue();
+            waitUntilVisibleAgain();
         }
 
         public void waitUntilVisibleAgain()

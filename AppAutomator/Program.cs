@@ -5,7 +5,7 @@ using System;
 using System.Diagnostics;
 using System.Threading;
 using log4net;
-
+using System.Configuration;
 
 namespace AppAutomator
 {
@@ -15,23 +15,9 @@ namespace AppAutomator
         
         static void Main(string[] args)
         {
-            Logger.log.Info("Hello logging world!");
-            Logger.log.Info("Hello logging world!");
-            Logger.log.Info("Hello logging world!");
-            Logger.log.Info("Hello logging world!");
 
-
-            //WireGuard wireGuard = new WireGuard(new []{ "QA21", "QA22"});
-            //WireGuard wireGuard = new WireGuard(new[] { "QA24", "QA25" });
-            //Bot bot = new Bot();
-
-            for (int i = 0; i < 3; i++) {
-                //wireGuard.switchToNextNetwork();
-                //bot.waitUntilVisibleAgain();
-                //bot.clickContinue();
-                //bot.waitUntilVisibleAgain();
-                Thread.Sleep(5000);
-            }
+            BrowserRoutine browserRoutine = new BrowserRoutine();
+            _ = browserRoutine.runForConfiguredTimesAsync();
         }
     }
 }

@@ -19,4 +19,7 @@ C:\Users\alexa\Development\AppAutomator\AppAutomator\obj\Debug\netcoreapp3.1\App
 C:\Users\alexa\Development\AppAutomator\AppAutomator\obj\Debug\netcoreapp3.1\AppAutomator.dll
 C:\Users\alexa\Development\AppAutomator\AppAutomator\obj\Debug\netcoreapp3.1\AppAutomator.pdb
 C:\Users\alexa\Development\AppAutomator\AppAutomator\obj\Debug\netcoreapp3.1\AppAutomator.genruntimeconfig.cache
-C:\Users\alexa\Development\AppAutomator\AppAutomator\obj\Debug\netcoreapp3.1\AppAutomator.csproj.AssemblyReference.cache
+C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\System.Net.Http.Json.dll
+C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll
+C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\System.Text.Json.dll
