@@ -10,6 +10,10 @@ C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\Fla
 C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\Interop.UIAutomationClient.dll
 C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\log4net.dll
 C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\System.Management.dll
+C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\System.Net.Http.Json.dll
+C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll
+C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\System.Text.Json.dll
 C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Management.dll
 C:\Users\alexa\Development\AppAutomator\AppAutomator\obj\Debug\netcoreapp3.1\AppAutomator.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\alexa\Development\AppAutomator\AppAutomator\obj\Debug\netcoreapp3.1\AppAutomator.AssemblyInfoInputs.cache
@@ -19,7 +23,4 @@ C:\Users\alexa\Development\AppAutomator\AppAutomator\obj\Debug\netcoreapp3.1\App
 C:\Users\alexa\Development\AppAutomator\AppAutomator\obj\Debug\netcoreapp3.1\AppAutomator.dll
 C:\Users\alexa\Development\AppAutomator\AppAutomator\obj\Debug\netcoreapp3.1\AppAutomator.pdb
 C:\Users\alexa\Development\AppAutomator\AppAutomator\obj\Debug\netcoreapp3.1\AppAutomator.genruntimeconfig.cache
-C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\System.Net.Http.Json.dll
-C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll
-C:\Users\alexa\Development\AppAutomator\AppAutomator\bin\Debug\netcoreapp3.1\System.Text.Json.dll
+C:\Users\alexa\Development\AppAutomator\AppAutomator\obj\Debug\netcoreapp3.1\AppAutomator.csproj.AssemblyReference.cache

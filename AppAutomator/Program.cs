@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Threading;
 using log4net;
 using System.Configuration;
+using System.Threading.Tasks;
 
 namespace AppAutomator
 {
@@ -13,11 +14,11 @@ namespace AppAutomator
     class Program
     {
         
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
 
             BrowserRoutine browserRoutine = new BrowserRoutine();
-            _ = browserRoutine.runForConfiguredTimesAsync();
+            await  browserRoutine.runForConfiguredTimesAsync();
         }
     }
 }

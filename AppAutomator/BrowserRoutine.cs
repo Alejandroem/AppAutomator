@@ -28,8 +28,9 @@ namespace AppAutomator
 
         async Task startBrowserRoutineAsync()
         {
-            await wireGuard.performNetworkSwitchUntilConnectionItsValidAsync();
-            bot.doAFullRunAndWaitToTryAgain();
+            if(await wireGuard.performNetworkSwitchUntilConnectionItsValidAsync()) { 
+                bot.doAFullRunAndWaitToTryAgain();
+            }
         }
 
 

@@ -20,21 +20,31 @@ namespace AppAutomator
 
     class IpServerResponse
     {
-        public string status;
-        public string nextqa;
-        public string validip;
-        public string message;
+        public string Status { get; set; }
+        public string NextQa { get; set; }
+        public string ValidIp { get; set; }
+        public string Message { get; set; }
+    }
+
+    class IpServerRquest
+    {
+        public String ip { get; set; }
+        public String qa { get; set; }
+        public String machine { get; set; }
     }
 
     class WireGuard
     {
-        /*
+
+        //TODO move to a config file
+        /*        
         const String ACTIVATE = "Activate";
         const String DEACTIVATE = "Deactivate";
-        */
+        
+                 */
         const String ACTIVATE = "Activar";
         const String DEACTIVATE = "Desactivar";
-
+        
         Application wireGuardApp;
 
         String[] networks;
@@ -70,31 +80,29 @@ namespace AppAutomator
             return this.activeNetwork > 0;
         }
 
-        public async Task performNetworkSwitchUntilConnectionItsValidAsync()
+        public async Task<bool> performNetworkSwitchUntilConnectionItsValidAsync()
         {
-
-            Logger.log.Info("Starting to change network");
-            int ipRetries = 10;
-            while (!await isValidIpAsync())
+            int ipRetries = int.Parse(ConfigurationManager.AppSettings["ipRetries"]);
+            
+            bool isValidIp = await isValidIpAsync();
+            while (!isValidIp)
             {
                 Logger.log.Info("Ip Valid Retry number: " + ipRetries);
-
                 switchToNextNetwork();
 
-                Logger.log.Info("Wating for 5 secs to test packages");
-                Thread.Sleep(5000);
-                int internetRetries = 10;
-                while (!hasInternet())
+                int internetRetries = int.Parse(ConfigurationManager.AppSettings["packagesRetries"]);
+                
+                bool hasInternet = await hasInternetAsync();
+                while (!hasInternet)
                 {
                     Logger.log.Info("Has Internet retries: " + internetRetries);
-                    toggleCurrentNetwork();
-                    Logger.log.Info("Wating for 5 secs to test packages");
-                    Thread.Sleep(5000);
+                    toggleCurrentNetwork();                    
                     internetRetries--;
                     if (internetRetries == 0)
                     {
                         break;
                     }
+                    hasInternet = await hasInternetAsync();
                 }
 
 
@@ -103,7 +111,10 @@ namespace AppAutomator
                 {
                     break;
                 }
+
+                isValidIp = await isValidIpAsync();
             }
+            return isValidIp;
         }
 
 
@@ -123,42 +134,51 @@ namespace AppAutomator
 
         public async Task<bool> isValidIpAsync()
         {
-            //TODO validate if current network it's -1
-            if (activeNetwork < 0)
+            Logger.log.Info("Wating for 2 secs to test ip");
+            Thread.Sleep(2000);
+            Logger.log.Info("Testing valid ip");
+            try
             {
-                return false;
-            }
-            String ip = getCurrentIP();
-            String machine = ConfigurationManager.AppSettings["machine"];
-            Dictionary<string, string> values = new Dictionary<string, string>
+                if (activeNetwork < 0)
                 {
-                    { "ip", ip },
-                    { "qa", networks[activeNetwork] },
-                    { "machine", machine }
-                };
+                    return false;
+                }
+
+                IpServerRquest ipServerRquest = new IpServerRquest();
+                ipServerRquest.ip = getCurrentIP();
+                ipServerRquest.qa = networks[activeNetwork];
+                ipServerRquest.machine = ConfigurationManager.AppSettings["machine"];
 
 
-            FormUrlEncodedContent content = new FormUrlEncodedContent(values);
+                HttpClient client = new HttpClient();
+                client.Timeout = TimeSpan.FromMinutes(2);
+
+                String apiKey = ConfigurationManager.AppSettings["apiKey"];
+                client.DefaultRequestHeaders.Add("api-key", apiKey);
+
+                String serverURL = ConfigurationManager.AppSettings["serverURL"];
+                HttpResponseMessage response = await client.PostAsJsonAsync(serverURL + "/ipvalidate/validateip", ipServerRquest);
+
+                response.EnsureSuccessStatusCode();
+                IpServerResponse responseObject = await response.Content.ReadFromJsonAsync<IpServerResponse>();
 
 
-            HttpClient client = new HttpClient();
-
-            String apiKey = ConfigurationManager.AppSettings["apiKey"];
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("api-key", apiKey);
-
-
-            String serverURL = ConfigurationManager.AppSettings["serverURL"];
-            HttpResponseMessage response = await client.PostAsJsonAsync(serverURL + "/ipvalidate/ValidateIP", content);
-
-            response.EnsureSuccessStatusCode();
-            IpServerResponse responseObject = await response.Content.ReadFromJsonAsync<IpServerResponse>();
-
-            Logger.log.Info(responseObject.message);
-            Logger.log.Info(responseObject.validip);
-            Logger.log.Info(responseObject.nextqa);
-            Logger.log.Info(responseObject.status);
-
-            return true;
+                Logger.log.Info(responseObject.Message);
+                Logger.log.Info(responseObject.ValidIp);
+                Logger.log.Info(responseObject.NextQa);
+                Logger.log.Info(responseObject.Status);
+                if(responseObject.ValidIp == "yes")
+                {
+                    return true;
+                }
+                
+            }
+            catch (Exception e)
+            {
+                Logger.log.Info(e.Message);
+                Logger.log.Info("Something went wrong while calling remote server to check ip");
+            }
+            return false;
         }
 
         public bool toggleCurrentNetwork()
@@ -201,7 +221,7 @@ namespace AppAutomator
                         Button deactivateButton = wireGuardWindow.FindFirstDescendant(cf => cf.ByText(DEACTIVATE))?.AsButton();
                         if (deactivateButton != null)
                         {
-                            Logger.log.Info("Network toggled succesfully");
+                            Logger.log.Info("Network activated succesfully");
                             break;
                         }
                     }
@@ -261,10 +281,14 @@ namespace AppAutomator
                         }
 
                     }
-                    Logger.log.Error("Switching to: " + networks[networkToSwitchTo]);
+                    Logger.log.Info("Switching to: " + networks[networkToSwitchTo]);
+                    wireGuardWindow.FocusNative();
+                    wireGuardWindow.Focus();
                     ListBoxItem QAButton = wireGuardWindow.FindFirstDescendant(cf => cf.ByText(networks[networkToSwitchTo])).AsListBoxItem();
                     QAButton.Select();
                     Thread.Sleep(1000);
+                    wireGuardWindow.FocusNative();
+                    wireGuardWindow.Focus();
                     Button activateButton = wireGuardWindow.FindFirstDescendant(cf => cf.ByText(ACTIVATE))?.AsButton();
                     activateButton.WaitUntilClickable();
                     activateButton.Click();
@@ -272,6 +296,8 @@ namespace AppAutomator
                     for (int i = 0; i < 100; i++)
                     {
                         Thread.Sleep(500);
+                        wireGuardWindow.FocusNative();
+                        wireGuardWindow.Focus();
                         Button deactivateButton = wireGuardWindow.FindFirstDescendant(cf => cf.ByText(DEACTIVATE))?.AsButton();
                         if (deactivateButton != null)
                         {
@@ -297,28 +323,29 @@ namespace AppAutomator
             return false;
         }
 
-        public bool hasInternet()
+        public async Task<bool> hasInternetAsync()
         {
+            Logger.log.Info("Wating for 2 secs to test packages");
+            Thread.Sleep(2000);
+            Logger.log.Info("Testing internet");
             try
             {
-                Ping myPing = new Ping();
-                PingReply reply = myPing.Send("https://www.google.com/", 5000);
-                if (reply != null)
+
+                HttpClient client = new HttpClient();
+                client.Timeout = TimeSpan.FromMinutes(2);
+                HttpResponseMessage response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Head, "https://google.com/"));
+
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    Logger.log.Info("Status :  " + reply.Status + " \n Time : " + reply.RoundtripTime.ToString() + " \n Address : " + reply.Address);
-
-                    if (reply.Status == IPStatus.Success)
-                    {
-                        return true;
-                    }
-
+                    Logger.log.Info("200 status code we have internet");
+                    return true;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Logger.log.Info(e.Message);
-                Logger.log.Info("ERROR: You have Some TIMEOUT issue");
             }
+            Logger.log.Error("200 is not returning from the server");
             return false;
         }
     }

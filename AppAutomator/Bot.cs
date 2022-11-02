@@ -9,6 +9,7 @@ namespace AppAutomator
 {
     class Bot
     {
+        //TODO move to a config file
         /*
         const String CONTINUE ="Continue";
         const String TRY_AGAIN = "Try again";

@@ -1,9 +1,9 @@
 C:\Users\alexa\Development\AppAutomator\BotMock\bin\Release\BotMock.exe
 C:\Users\alexa\Development\AppAutomator\BotMock\bin\Release\BotMock.pdb
+C:\Users\alexa\Development\AppAutomator\BotMock\obj\Release\BotMock.csproj.AssemblyReference.cache
 C:\Users\alexa\Development\AppAutomator\BotMock\obj\Release\BotMock.windowBotMock.resources
 C:\Users\alexa\Development\AppAutomator\BotMock\obj\Release\BotMock.Properties.Resources.resources
 C:\Users\alexa\Development\AppAutomator\BotMock\obj\Release\BotMock.csproj.GenerateResource.cache
 C:\Users\alexa\Development\AppAutomator\BotMock\obj\Release\BotMock.csproj.CoreCompileInputs.cache
 C:\Users\alexa\Development\AppAutomator\BotMock\obj\Release\BotMock.exe
 C:\Users\alexa\Development\AppAutomator\BotMock\obj\Release\BotMock.pdb
-C:\Users\alexa\Development\AppAutomator\BotMock\obj\Release\BotMock.csproj.AssemblyReference.cache
