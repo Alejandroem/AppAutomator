@@ -49,6 +49,7 @@ namespace AppAutomator
 
         String[] networks;
         int activeNetwork = -1;
+        String nextQA = "";
 
         public WireGuard(string[] networks)
         {
@@ -171,6 +172,10 @@ namespace AppAutomator
                 {
                     return true;
                 }
+                if (responseObject.ValidIp == "no")
+                {
+                    nextQA = responseObject.NextQa;
+                }
                 
             }
             catch (Exception e)
@@ -247,15 +252,26 @@ namespace AppAutomator
             Logger.log.Info("Trying to switch network");
             try
             {
-                int networkToSwitchTo = this.activeNetwork;
-                if (networkToSwitchTo + 1 >= networks.Length)
+                 
+                int indexOfNetworkToSwitchTo = this.activeNetwork;
+                if (indexOfNetworkToSwitchTo + 1 >= networks.Length)
                 {
-                    networkToSwitchTo = 0;
+                    indexOfNetworkToSwitchTo = 0;
                 }
                 else
                 {
-                    networkToSwitchTo++;
+                    indexOfNetworkToSwitchTo++;
                 }
+
+                String networkToSwitchString = networks[indexOfNetworkToSwitchTo];
+
+                if(this.nextQA.Length > 0)
+                {
+                    networkToSwitchString = this.nextQA;
+                }
+
+
+
 
                 using (UIA3Automation wireGuardAutomation = new UIA3Automation())
                 {
@@ -281,10 +297,10 @@ namespace AppAutomator
                         }
 
                     }
-                    Logger.log.Info("Switching to: " + networks[networkToSwitchTo]);
+                    Logger.log.Info("Switching to: " + networks[indexOfNetworkToSwitchTo]);
                     wireGuardWindow.FocusNative();
                     wireGuardWindow.Focus();
-                    ListBoxItem QAButton = wireGuardWindow.FindFirstDescendant(cf => cf.ByText(networks[networkToSwitchTo])).AsListBoxItem();
+                    ListBoxItem QAButton = wireGuardWindow.FindFirstDescendant(cf => cf.ByText(networkToSwitchString)).AsListBoxItem();
                     QAButton.Select();
                     Thread.Sleep(1000);
                     wireGuardWindow.FocusNative();
@@ -310,7 +326,21 @@ namespace AppAutomator
                 }
 
                 //Do this only when the process succed
-                this.activeNetwork = networkToSwitchTo;
+                this.activeNetwork = indexOfNetworkToSwitchTo;
+                if(this.nextQA.Length > 0)
+                {
+                    for(int i = 0; i < networks.Length; i++)
+                    {
+                        if (networks[i].Equals(this.nextQA))
+                        {
+                            this.activeNetwork = i;
+                            break;
+                        }
+                    }
+                }
+
+                this.nextQA = "";
+
                 Thread.Sleep(2000);
                 Logger.log.Info("Successfully changed network");
                 return true;
